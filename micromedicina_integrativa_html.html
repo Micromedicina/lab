@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MicroMedicina Integrativa, laboratorio de microbiología médica liderado por Martín García Juárez. Investigación en microbiología, inmunología, muerte celular, microbiota, neuroinflamación y enfermedades infecciosas." />
+  <title>MicroMedicina Integrativa | Laboratorio de Microbiología Médica</title>
+  <style>
+    :root {
+      --bg: #070b10;
+      --bg-soft: #0d131c;
+      --card: rgba(18, 27, 39, 0.82);
+      --card-strong: #121b27;
+      --text: #edf4f8;
+      --muted: #9baabc;
+      --line: rgba(255, 255, 255, 0.09);
+      --accent: #49d6c9;
+      --accent-2: #8d7dff;
+      --accent-3: #b7ff73;
+      --danger: #ff6f91;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(73, 214, 201, 0.14), transparent 34rem),
+        radial-gradient(circle at 82% 12%, rgba(141, 125, 255, 0.16), transparent 36rem),
+        radial-gradient(circle at 50% 100%, rgba(183, 255, 115, 0.08), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 11, 16, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 36px rgba(73, 214, 201, 0.28);
+      color: #061014;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: -3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .nav-links a {
+      transition: color 180ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-weight: 700;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(73, 214, 201, 0.42);
+      background: rgba(73, 214, 201, 0.08);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #061014;
+      border-color: transparent;
+      box-shadow: 0 18px 52px rgba(73, 214, 201, 0.20);
+    }
+
+    .hero {
+      position: relative;
+      padding: 96px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid rgba(73, 214, 201, 0.24);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(73, 214, 201, 0.07);
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-3);
+      box-shadow: 0 0 0 6px rgba(183, 255, 115, 0.08);
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 8vw, 6.7rem);
+      line-height: 0.92;
+      letter-spacing: -0.085em;
+      max-width: 850px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 6%, var(--accent) 45%, var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: clamp(1.04rem, 1.7vw, 1.22rem);
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 520px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+        var(--card);
+      border-radius: calc(var(--radius) + 10px);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-panel:before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 28% 28%, rgba(73, 214, 201, 0.16), transparent 20%),
+        radial-gradient(circle at 70% 42%, rgba(141, 125, 255, 0.18), transparent 26%);
+      filter: blur(12px);
+      z-index: 0;
+    }
+
+    .glass-card {
+      position: relative;
+      z-index: 1;
+      border: 1px solid var(--line);
+      background: rgba(7, 11, 16, 0.50);
+      border-radius: 24px;
+      padding: 22px;
+      backdrop-filter: blur(16px);
+      margin-bottom: 18px;
+    }
+
+    .microbe-orbit {
+      position: relative;
+      z-index: 1;
+      height: 238px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.035);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(73, 214, 201, 0.34);
+      animation: rotate 20s linear infinite;
+    }
+
+    .orb.one {
+      width: 190px;
+      height: 190px;
+    }
+
+    .orb.two {
+      width: 132px;
+      height: 132px;
+      animation-direction: reverse;
+      border-color: rgba(141, 125, 255, 0.38);
+    }
+
+    .cell {
+      width: 76px;
+      height: 76px;
+      border-radius: 28px 36px 30px 40px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 60px rgba(73, 214, 201, 0.38);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-3);
+      box-shadow: 0 0 18px rgba(183, 255, 115, 0.38);
+    }
+
+    .dot.a { top: 62px; left: 84px; }
+    .dot.b { right: 78px; bottom: 72px; background: var(--accent); }
+    .dot.c { right: 118px; top: 54px; background: var(--accent-2); }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(4deg); }
+    }
+
+    .panel-title {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .panel-leader {
+      font-size: 1.6rem;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .panel-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      font-size: 0.82rem;
+      font-weight: 650;
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.55fr);
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      font-weight: 850;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4.2vw, 3.6rem);
+      line-height: 1;
+      letter-spacing: -0.065em;
+    }
+
+    .section-head p,
+    .lead {
+      color: var(--muted);
+      font-size: 1.03rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 16px 46px rgba(0, 0, 0, 0.18);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(73, 214, 201, 0.30);
+      background: rgba(22, 34, 49, 0.92);
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(73, 214, 201, 0.10);
+      border: 1px solid rgba(73, 214, 201, 0.14);
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      font-size: 1.12rem;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .profile-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(160deg, rgba(73, 214, 201, 0.08), rgba(141, 125, 255, 0.06)), var(--card);
+      border-radius: calc(var(--radius) + 6px);
+      padding: 30px;
+      min-height: 100%;
+    }
+
+    .avatar {
+      width: 92px;
+      height: 92px;
+      border-radius: 30px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #061014;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      margin-bottom: 22px;
+    }
+
+    .profile-card h3 {
+      font-size: 2rem;
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+      margin-bottom: 12px;
+    }
+
+    .profile-meta {
+      color: var(--muted);
+      margin: 18px 0 26px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-top: 7px;
+    }
+
+    .timeline {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: calc(var(--radius) + 6px);
+      padding: 30px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 30px;
+      padding-bottom: 28px;
+      border-left: 1px solid rgba(73, 214, 201, 0.24);
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-item:before {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: 4px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(73, 214, 201, 0.42);
+    }
+
+    .timeline-item strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .timeline-item span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .publication {
+      position: relative;
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 22px;
+      padding: 22px;
+      overflow: hidden;
+    }
+
+    .publication:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(var(--accent), var(--accent-2));
+    }
+
+    .publication h3 {
+      font-size: 1rem;
+      line-height: 1.28;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .publication p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .pub-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 750;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 6px 9px;
+      border: 1px solid rgba(73, 214, 201, 0.16);
+      background: rgba(73, 214, 201, 0.06);
+    }
+
+    .feature-band {
+      border: 1px solid rgba(73, 214, 201, 0.16);
+      border-radius: calc(var(--radius) + 10px);
+      background:
+        linear-gradient(135deg, rgba(73, 214, 201, 0.10), rgba(141, 125, 255, 0.10)),
+        rgba(255, 255, 255, 0.035);
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+    }
+
+    .feature-band h3 {
+      font-size: 1.35rem;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+    }
+
+    .feature-band p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-top: 8px;
+    }
+
+    .team-groups {
+      display: grid;
+      gap: 28px;
+    }
+
+    .team-group-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .team-group-head h3 {
+      font-size: 1.45rem;
+      letter-spacing: -0.04em;
+    }
+
+    .team-group-head p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .member-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025)), var(--card);
+      border-radius: 24px;
+      padding: 22px;
+      overflow: hidden;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .member-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(73, 214, 201, 0.30);
+      background: rgba(22, 34, 49, 0.94);
+    }
+
+    .member-card:after {
+      content: "";
+      position: absolute;
+      inset: auto 18px 0 18px;
+      height: 3px;
+      border-radius: 999px 999px 0 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      opacity: 0.72;
+    }
+
+    .member-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .member-avatar {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(73, 214, 201, 0.10);
+      border: 1px solid rgba(73, 214, 201, 0.18);
+      color: var(--accent);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+    }
+
+    .member-card h4 {
+      font-size: 1.04rem;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+    }
+
+    .member-role {
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .member-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+    }
+
+    .member-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+      margin-bottom: 16px;
+    }
+
+    .member-tag {
+      display: inline-flex;
+      padding: 6px 8px;
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .member-email {
+      color: var(--text);
+      font-size: 0.86rem;
+      font-weight: 750;
+      word-break: break-word;
+    }
+
+    .contact {
+      padding-bottom: 100px;
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 1fr 0.72fr;
+      gap: 28px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at top right, rgba(73, 214, 201, 0.12), transparent 26rem),
+        var(--card-strong);
+      border-radius: 34px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card h2 {
+      margin-bottom: 16px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 15px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      color: var(--muted);
+    }
+
+    .contact-row strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1100px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .section-head,
+      .split,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 72px;
+      }
+
+      .hero-panel {
+        min-height: auto;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .feature-band {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .cards,
+      .pub-grid,
+      .stats,
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      section {
+        padding: 58px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="MicroMedicina Integrativa">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3c3.2 0 6 2.4 6 5.6 0 4.6-6 12.4-6 12.4S6 13.2 6 8.6C6 5.4 8.8 3 12 3Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M9.4 9.4h5.2M12 6.8V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>MicroMedicina<br><small>Integrativa</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#lineas">Líneas</a>
+        <a href="#liderazgo">Liderazgo</a>
+        <a href="#integrantes">Integrantes</a>
+        <a href="#publicaciones">Publicaciones</a>
+        <a href="#plataforma">Plataforma</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> Laboratorio de microbiología médica</div>
+          <h1><span class="gradient-text">MicroMedicina Integrativa</span></h1>
+          <p class="hero-copy">
+            Investigación traslacional en microbiología médica, inmunología, microbiota, muerte celular y neuroinflamación. Integramos modelos experimentales, análisis inmunometabólico y vigilancia de patógenos para responder preguntas biomédicas con impacto clínico.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="mailto:martin.garciajr@uanl.edu.mx">Contactar al laboratorio</a>
+            <a class="btn" href="https://scholar.google.com/citations?user=iC5Ix3gAAAAJ&hl=es" target="_blank" rel="noopener">Ver Google Scholar</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Resumen del laboratorio">
+          <div class="glass-card">
+            <p class="panel-title">Líder académico</p>
+            <p class="panel-leader">Dr. Martín García Juárez</p>
+            <div class="panel-tags">
+              <span class="tag">Microbiología</span>
+              <span class="tag">Inmunología</span>
+              <span class="tag">Microbiota</span>
+              <span class="tag">Muerte celular</span>
+              <span class="tag">Neuroinflamación</span>
+            </div>
+          </div>
+
+          <div class="microbe-orbit" aria-hidden="true">
+            <div class="orb one"></div>
+            <div class="orb two"></div>
+            <div class="cell"></div>
+            <span class="dot a"></span>
+            <span class="dot b"></span>
+            <span class="dot c"></span>
+          </div>
+
+          <div class="glass-card" style="margin-top:18px;margin-bottom:0;">
+            <p class="panel-title">Enfoque</p>
+            <p style="color:var(--muted);font-size:.96rem;">Biomedicina experimental aplicada a infecciones, inmunometabolismo, hongos oportunistas, biofilm, modelos murinos y enfermedades crónico-degenerativas.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="lineas">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Líneas de investigación</p>
+            <h2>Ciencia de frontera con lectura clínica.</h2>
+          </div>
+          <p>El laboratorio articula microbiología médica, inmunología experimental y análisis molecular para estudiar patogénesis, inflamación y respuesta del hospedero.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12c3-7 13-7 16 0-3 7-13 7-16 0Z" stroke="currentColor" stroke-width="2"/><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+            <h3>Microbiología médica</h3>
+            <p>Estudio de infecciones oportunistas, candidiasis, mucorales, biofilms y dinámica microbiana asociada a enfermedad.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8c4 0 10 8 14 8M19 8c-4 0-10 8-14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Inmunología y citocinas</h3>
+            <p>Caracterización de perfiles inflamatorios, interleucina-6, estrés oxidativo y regulación inmune en modelos biomédicos.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 3c5 4 5 14 0 18M17 3c-5 4-5 14 0 18M7 7h10M7 12h10M7 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Microbiota y metagenómica</h3>
+            <p>Análisis de microbioma, viroma y perfiles microbianos en sangre, heces y contextos de enfermedad metabólica e infecciosa.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-4.5 7-11a7 7 0 0 0-14 0c0 6.5 7 11 7 11Z" stroke="currentColor" stroke-width="2"/><path d="M9 10h6M12 7v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Neuroinflamación</h3>
+            <p>Modelos de programación materna, conducta semejante al autismo, microglía, inflamación cerebral y modulación por ayuno.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="liderazgo">
+      <div class="container split">
+        <article class="profile-card">
+          <div class="avatar">MG</div>
+          <p class="kicker">Dirección científica</p>
+          <h3>Martín Gerardo García Juárez</h3>
+          <p class="lead">Profesor de Microbiología en la Facultad de Medicina de la Universidad Autónoma de Nuevo León. Su trayectoria cruza microbiología médica, inmunología del cáncer, muerte celular, biología molecular, neurociencias y modelos experimentales.</p>
+          <p class="profile-meta">Responsable sanitario del Laboratorio de Microbiología Experimental, Médico Veterinario Responsable Autorizado en Bioterios y vocal del CICUAL. Integrante del Sistema Nacional de Investigadoras e Investigadores en categoría Candidato.</p>
+          <div class="stats">
+            <div class="stat"><strong>4</strong><span>líneas institucionales</span></div>
+            <div class="stat"><strong>2024</strong><span>profesor UANL</span></div>
+            <div class="stat"><strong>SNII</strong><span>candidato</span></div>
+          </div>
+        </article>
+
+        <aside class="timeline">
+          <div class="timeline-item">
+            <strong>Profesor de Microbiología, UANL</strong>
+            <span>Docencia en Microbiología Médica y formación de estudiantes de pregrado y posgrado.</span>
+          </div>
+          <div class="timeline-item">
+            <strong>Laboratorio de Microbiología Experimental</strong>
+            <span>Responsabilidad sanitaria, bioseguridad, trazabilidad y uso ético de modelos animales.</span>
+          </div>
+          <div class="timeline-item">
+            <strong>Centro Regional de Control de Enfermedades Infecciosas</strong>
+            <span>Colaboración en inmunidad, mucormicosis, candidiasis, biofilm y vigilancia epidemiológica.</span>
+          </div>
+          <div class="timeline-item">
+            <strong>Investigación integrativa</strong>
+            <span>Convergencia entre microbiota, inmunometabolismo, enfermedades infecciosas, neuroinflamación y salud metabólica.</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="integrantes">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Equipo</p>
+            <h2>Integrantes del laboratorio.</h2>
+          </div>
+          <p>Un equipo interdisciplinario que combina microbiología médica, virología, bioinformática, modelos murinos, inmunometabolismo y formación clínica.</p>
+        </div>
+
+        <div class="team-groups">
+          <div>
+            <div class="team-group-head">
+              <h3>Profesores e investigadores</h3>
+              <p>Dirección, colaboración científica y capacidades metodológicas centrales.</p>
+            </div>
+            <div class="team-grid" style="margin-top:16px;">
+              <article class="member-card">
+                <div class="member-top">
+                  <div class="member-avatar">MG</div>
+                  <div>
+                    <h4>Dr. Martín Gerardo García Juárez</h4>
+                    <div class="member-role">Líder del laboratorio</div>
+                  </div>
+                </div>
+                <p>Doctor en Biología Molecular e Ingeniería Genética, Médico Veterinario especialista en animales de laboratorio y Maestro en Inmunobiología. Profesor e investigador del Departamento de Microbiología de la Facultad de Medicina, UANL. Responsable del Bioterio del Laboratorio de Microbiología Experimental.</p>
+                <div class="member-tags"><span class="member-tag">Microbiología médica</span><span class="member-tag">Microbiota</span><span class="member-tag">Hongos y virus</span><span class="member-tag">Neuroinflamación</span><span class="member-tag">Medicina traslacional</span></div>
+                <a class="member-email" href="mailto:martin.garciajr@uanl.edu.mx">martin.garciajr@uanl.edu.mx</a>
+              </article>
+
+              <article class="member-card">
+                <div class="member-top">
+                  <div class="member-avatar">AR</div>
+                  <div>
+                    <h4>Dr. Alí Fernando Ruiz Higareda</h4>
+                    <div class="member-role">Bioinformática y genómica</div>
+                  </div>
+                </div>
+                <p>Médico Cirujano y Partero, Maestro en Ciencias con orientación en Biología Molecular e Ingeniería Genética e investigador del CIIViM. Su trabajo se centra en NGS, Oxford Nanopore, genómica viral, metagenómica, transcriptómica, epidemiología molecular y modelos de aprendizaje automático para problemas biomédicos.</p>
+                <div class="member-tags"><span class="member-tag">NGS</span><span class="member-tag">Bioinformática</span><span class="member-tag">RNA-seq</span><span class="member-tag">Filogenética</span><span class="member-tag">Machine learning</span></div>
+                <a class="member-email" href="mailto:ali.ruizhg@outlook.com">ali.ruizhg@outlook.com</a>
+              </article>
+
+              <article class="member-card">
+                <div class="member-top">
+                  <div class="member-avatar">BA</div>
+                  <div>
+                    <h4>Dra. MEE Blanca Esthela Álvarez Salas</h4>
+                    <div class="member-role">Virología traslacional</div>
+                  </div>
+                </div>
+                <p>Médico Cirujano y Partero, Doctora en Medicina por la UANL, profesora e investigadora del Centro de Investigación e Innovación en Virología Médica. Su línea integra cambios metabólicos asociados a replicación viral, infección, medicina traslacional y virus.</p>
+                <div class="member-tags"><span class="member-tag">Virología</span><span class="member-tag">Replicación viral</span><span class="member-tag">Metabolismo</span><span class="member-tag">Medicina traslacional</span></div>
+                <a class="member-email" href="mailto:balvarez.104637@uanl.edu.mx">balvarez.104637@uanl.edu.mx</a>
+              </article>
+            </div>
+          </div>
+
+          <div>
+            <div class="team-group-head">
+              <h3>Estudiantes y colaboradores</h3>
+              <p>Formación clínica, investigación experimental y apoyo técnico del laboratorio.</p>
+            </div>
+            <div class="team-grid" style="margin-top:16px;">
+              <article class="member-card">
+                <div class="member-top"><div class="member-avatar">RR</div><div><h4>Rosa Gabriela Rivera Flores</h4><div class="member-role">MIP, becaria e instructora</div></div></div>
+                <p>Médico Interno de Pregrado, becaria e instructora del Departamento de Microbiología UANL a nivel pregrado. Investigadora y colaboradora del Laboratorio de Microbiología Experimental en modelos murinos BALB/c sobre alcoholismo y su impacto en el microbioma.</p>
+                <div class="member-tags"><span class="member-tag">Modelos BALB/c</span><span class="member-tag">Microbioma</span><span class="member-tag">Alcoholismo</span><span class="member-tag">Docencia</span></div>
+                <a class="member-email" href="mailto:rosa.riveraflr@uanl.edu.mx">rosa.riveraflr@uanl.edu.mx</a>
+              </article>
+
+              <article class="member-card">
+                <div class="member-top"><div class="member-avatar">ME</div><div><h4>Monica Daniela Escobar López</h4><div class="member-role">MIP, becaria</div></div></div>
+                <p>Médico Interno de Pregrado y becaria del Departamento de Microbiología de la UANL. Participa en investigación en el Departamento de Microbiología y colabora con el Centro de Especialistas en Artritis y Reumatismo.</p>
+                <div class="member-tags"><span class="member-tag">Microbiología</span><span class="member-tag">Investigación clínica</span><span class="member-tag">Reumatología</span></div>
+                <a class="member-email" href="mailto:monica.escobarlpz@uanl.edu.mx">monica.escobarlpz@uanl.edu.mx</a>
+              </article>
+
+              <article class="member-card">
+                <div class="member-top"><div class="member-avatar">KO</div><div><h4>Kennay Javier Olvera Grana</h4><div class="member-role">MIP, becario e instructor</div></div></div>
+                <p>Médico Interno de Pregrado, becario e instructor del Departamento de Microbiología UANL. Colaborador del Laboratorio de Microbiología Experimental con modelos murinos BALB/c sobre alcoholismo y microbioma. Colabora con Endocrinología del Hospital Universitario UANL en investigación sobre NAFLD.</p>
+                <div class="member-tags"><span class="member-tag">BALB/c</span><span class="member-tag">Microbioma</span><span class="member-tag">NAFLD</span><span class="member-tag">Endocrinología</span></div>
+                <a class="member-email" href="mailto:kennay.olveragrn@uanl.edu.mx">kennay.olveragrn@uanl.edu.mx</a>
+              </article>
+
+              <article class="member-card">
+                <div class="member-top"><div class="member-avatar">IH</div><div><h4>MIP Isaac E. Herrera Tovar</h4><div class="member-role">Colaborador de microbiología</div></div></div>
+                <p>Estudiante de décimo semestre de Médico Cirujano en la UANL y Médico Interno de Pregrado. Colaborador en proyectos de investigación en microbiología en la Facultad de Medicina UANL, instructor del Departamento de Microbiología a nivel pregrado y colaborador del Bioterio con modelos BALB/c.</p>
+                <div class="member-tags"><span class="member-tag">Microbiología</span><span class="member-tag">Bioterio</span><span class="member-tag">BALB/c</span><span class="member-tag">Docencia</span></div>
+                <a class="member-email" href="mailto:isaac.herreratvr@uanl.edu.mx">isaac.herreratvr@uanl.edu.mx</a>
+              </article>
+
+              <article class="member-card">
+                <div class="member-top"><div class="member-avatar">OC</div><div><h4>MIP Octavio D. Casillas Huerta</h4><div class="member-role">Colaborador de microbiología</div></div></div>
+                <p>Estudiante de Médico Cirujano en la UANL y Médico Interno de Pregrado. Colaborador en proyectos de investigación del Departamento de Microbiología, con apoyo en actividades académicas, experimentales y del Laboratorio de Microbiología Experimental.</p>
+                <div class="member-tags"><span class="member-tag">Microbiología</span><span class="member-tag">Investigación</span><span class="member-tag">Pregrado</span><span class="member-tag">Biomedicina</span></div>
+                <a class="member-email" href="mailto:octavio.casillas@uanl.edu.mx">octavio.casillas@uanl.edu.mx</a>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publicaciones">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Producción científica</p>
+            <h2>Publicaciones seleccionadas.</h2>
+          </div>
+          <p>Selección de artículos y trabajos recientes vinculados con inmunología, microbiota, infecciones, neuroinflamación y metabolismo.</p>
+        </div>
+
+        <div class="pub-grid">
+          <article class="publication">
+            <h3>Breastfeeding contributes to physiological immune programming in the newborn</h3>
+            <p>Frontiers in Pediatrics, 2021.</p>
+            <div class="pub-meta"><span class="pill">Inmunoprogramación</span><span class="pill">192 citas</span></div>
+          </article>
+
+          <article class="publication">
+            <h3>Defining the role of anti-and pro-inflammatory outcomes of interleukin-6 in mental health</h3>
+            <p>Neuroscience, 2022.</p>
+            <div class="pub-meta"><span class="pill">IL-6</span><span class="pill">Salud mental</span></div>
+          </article>
+
+          <article class="publication">
+            <h3>Contribution of ceramides metabolism in psychiatric disorders</h3>
+            <p>Journal of Neurochemistry, 2023.</p>
+            <div class="pub-meta"><span class="pill">Ceramidas</span><span class="pill">Neuroquímica</span></div>
+          </article>
+
+          <article class="publication">
+            <h3>Intermittent fasting improves social interaction and decreases inflammatory markers in cortex and hippocampus</h3>
+            <p>Molecular Neurobiology, 2025.</p>
+            <div class="pub-meta"><span class="pill">Ayuno intermitente</span><span class="pill">Neuroinflamación</span></div>
+          </article>
+
+          <article class="publication">
+            <h3>Vaginal Microbiota Dynamics as a Key Determinant of Pathogenesis in Fungal Vulvovaginitis</h3>
+            <p>Current Fungal Infection Reports, 2026.</p>
+            <div class="pub-meta"><span class="pill">Microbiota vaginal</span><span class="pill">Micología</span></div>
+          </article>
+
+          <article class="publication">
+            <h3>Cytokine Profile and Oxidative Patterns in Murine Models of Disseminated Infection by Mucorales Species</h3>
+            <p>Pathogens, 2025.</p>
+            <div class="pub-meta"><span class="pill">Mucorales</span><span class="pill">Estrés oxidativo</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="plataforma">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Plataforma experimental</p>
+            <h2>Capacidades del laboratorio.</h2>
+          </div>
+          <p>Diseñada para investigación biomédica rigurosa, segura y reproducible, con énfasis en bioseguridad, cuidado animal y análisis molecular.</p>
+        </div>
+
+        <div class="feature-band">
+          <div>
+            <h3>Modelos experimentales y bioterio</h3>
+            <p>Gestión sanitaria, NOM-062-ZOO-1999, principios 3R, protocolos de bioseguridad y bienestar animal.</p>
+          </div>
+          <div>
+            <h3>Citometría, cultivo y muerte celular</h3>
+            <p>Evaluación de citotoxicidad, especies reactivas de oxígeno, modalidades de muerte celular y respuesta inmune.</p>
+          </div>
+          <div>
+            <h3>Microbioma, NGS y bioinformática</h3>
+            <p>Integración de metagenómica, secuenciación Oxford Nanopore, genómica viral, RNA-seq, análisis filogenéticos, filodinámicos y modelos computacionales aplicados a enfermedades infecciosas y metabólicas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="contact">
+      <div class="container contact-card">
+        <div>
+          <p class="kicker">Contacto</p>
+          <h2>Colaboración académica y científica.</h2>
+          <p class="lead">MicroMedicina Integrativa está orientado a proyectos colaborativos en microbiología médica, inmunología, modelos experimentales, micología médica, microbiota y enfermedades infecciosas.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="mailto:martin.garciajr@uanl.edu.mx">martin.garciajr@uanl.edu.mx</a>
+            <a class="btn" href="https://www.uanl.mx/investigadores/martin-gerardo-garcia-juarez/" target="_blank" rel="noopener">Perfil UANL</a>
+          </div>
+        </div>
+        <div class="contact-list">
+          <div class="contact-row">
+            <span class="icon" style="margin:0;flex:0 0 42px;">@</span>
+            <div><strong>Correo institucional</strong><a href="mailto:martin.garciajr@uanl.edu.mx">martin.garciajr@uanl.edu.mx</a></div>
+          </div>
+          <div class="contact-row">
+            <span class="icon" style="margin:0;flex:0 0 42px;">U</span>
+            <div><strong>Adscripción</strong>Facultad de Medicina, Universidad Autónoma de Nuevo León</div>
+          </div>
+          <div class="contact-row">
+            <span class="icon" style="margin:0;flex:0 0 42px;">CR</span>
+            <div><strong>Colaboraciones</strong>Centro Regional de Control de Enfermedades Infecciosas y proyectos de virología médica, microbiota e inmunometabolismo.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> MicroMedicina Integrativa. Laboratorio de microbiología médica.</p>
+      <p>Diseño moderno, minimalista y oscuro.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
